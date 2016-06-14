@@ -7,6 +7,8 @@ html
 		// Include the stylesheets from your site here
 		link(rel='stylesheet', href='//cms.netlify.com/assets/cms.css')
 		// Include a CMS specific stylesheet here
+		script!= "CMS_ENV = \"" + (process.env.CMS_ENV || "development") + "\";"
+
 		base(href='/admin/')
 	body
 		script(src='//cms.netlify.com/assets/vendor.js')
