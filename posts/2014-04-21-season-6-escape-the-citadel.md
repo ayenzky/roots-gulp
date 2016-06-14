@@ -1,5 +1,5 @@
 ---
-title: Escape from the Citadel (Season 6)
+title: Escape from the Citadel (Season 7)
 banner: /img/citadel.jpg
 shortdesc: Finn and Jake follow
 cmsUserSlug: escape-from-the-citadel-season-6
