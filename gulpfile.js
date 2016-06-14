@@ -36,6 +36,8 @@ coffeeScript = require('coffee-script/register');
 var browserSync = require('browser-sync').create();
 var del = require('del');
 var runSequence = require('run-sequence');
+var gutil = require('gulp-util');
+var markdown = require('gulp-markdown-to-json');
 
 
 gulp.task('roots:init', function(){
@@ -96,6 +98,17 @@ gulp.task('clean', function(cb){
   del(['./public/**/*'], cb);
 });
 
+gulp.task('markdown', function(){
+  gulp.src('posts/*.md')
+    .pipe(gutil.buffer())
+    .pipe(markdown({
+      pedantic:true,
+      smartypants: true
+
+    }))
+    .pipe(gulp.dest('data'))
+});
+
 gulp.task('watch', function(){
   gulp.watch([
     'views/**/*',
@@ -106,8 +119,9 @@ gulp.task('watch', function(){
     ['roots:recompile']);
   gulp.watch('images/*', ['images']);
   gulp.watch('svg/*.svg', ['vectors']);
+  gulp.watch('posts/*.md', ['markdown']);
 });
 
 gulp.task('default', function(){
-  runSequence('clean', 'images', 'roots:compile', 'watch');
+  runSequence('clean', 'images', 'markdown', 'roots:compile',  'watch');
 });
