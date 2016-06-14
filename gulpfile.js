@@ -64,7 +64,7 @@ gulp.task('roots:recompile', function(){
 
 gulp.task('roots:deploy', function(){
   var project = new Roots(path.join(__dirname, '/'));
-  return project.deploy({to: 'gh-pages'})
+  return project.deploy({to: 'public'})
     .done(function(){
       console.log('finished!');
     }, function(err){
